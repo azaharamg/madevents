@@ -1,13 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Calendar from './landingComponents/Calendar';
-import LinkButton from './landingComponents/LinkButton';
 
 function Landing() {
   return (
     <main>
       <h1>¿ Qué planes hay ?</h1>
       <Calendar />
-      <LinkButton />
+      <Link to='/main'>
+        <h2>Ver en el mapa</h2>
+      </Link>
       <section>
         <h2>MadEvents</h2>
         <p>
