@@ -10,10 +10,8 @@ class Calendar extends React.Component {
       // this.state.allmonths =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
       allmonths: moment.months(),
       //weekdayshort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-      weekdayshort: moment.weekdaysShort(),
-      selectedDay: ''
+      weekdayshort: moment.weekdaysShort()
     };
-    this.handleSelectedDay = this.handleSelectedDay.bind(this);
   }
 
   //Get the first day position in a month
@@ -35,13 +33,6 @@ class Calendar extends React.Component {
   //Find current month
   month = () => this.state.dateObject.format('MMMM');
 
-  //Handles
-  handleSelectedDay = event => {
-    this.setState({
-      selectedDay: event.target.dataset.value
-    });
-  };
-
   render() {
     //Fill with empty string until the first day position
     let blanks = [];
@@ -59,9 +50,9 @@ class Calendar extends React.Component {
       daysInMonth.push(
         <td
           key={Math.random()}
-          className={`calendar-day ${d === this.currentDay() || d === Number(this.state.selectedDay) ? 'today' : ''}`}
+          className={`calendar-day ${d === this.currentDay() || d === Number(this.props.selectedDay) ? 'today' : ''}`}
           data-value={d}
-          onClick={this.handleSelectedDay}
+          onClick={this.props.handleSelectedDay}
         >
           {d}
         </td>
