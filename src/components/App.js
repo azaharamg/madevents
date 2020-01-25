@@ -7,12 +7,8 @@ function App() {
   return (
     <div className='app'>
       <Switch>
-        <Route exact path='/'>
-          <Landing />
-        </Route>
-        <Route path='/main'>
-          <MainPage />
-        </Route>
+        <Route exact path='/' component={Landing} />
+        <Route path='/main' component={MainPage} />
       </Switch>
     </div>
   );

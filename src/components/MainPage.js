@@ -1,9 +1,14 @@
 import React from 'react';
 
-function MainPage() {
+function MainPage(props) {
+  const { events } = props.location.state;
   return (
     <div>
-      <h2>Main Page</h2>
+      <ul>
+        {events.map(event => {
+          return <li key={event.id}>{`${event.title} ----Start: ${event.dtstart}----End:${event.dtend}`}</li>;
+        })}
+      </ul>
     </div>
   );
 }

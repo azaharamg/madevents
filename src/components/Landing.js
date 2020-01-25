@@ -60,9 +60,10 @@ class Landing extends React.Component {
           placeholderText='Selecciona hasta cuando'
         />
 
-        <Link to='/main'>
+        <Link to={{ pathname: '/main', state: { events: this.state.events } }}>
           <h2>Ver en el mapa</h2>
         </Link>
+
         <section>
           <h2>MadEvents</h2>
           <p>
