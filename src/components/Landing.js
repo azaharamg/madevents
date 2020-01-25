@@ -1,26 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import getData from '../service/serverData.js';
-import Calendar from './landingComponents/Calendar';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import es from 'date-fns/locale/es';
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('es', es);
 
 class Landing extends React.Component {
   constructor() {
     super();
     this.state = {
       events: [],
-      selectedDay: ''
+      startDate: null,
+      endDate: null
     };
-    this.handleSelectedDay = this.handleSelectedDay.bind(this);
   }
 
   componentDidMount() {
     getData().then(data => this.setState({ events: data['@graph'] }));
   }
 
-  //Handles
-  handleSelectedDay = event => {
+  handleSetStartDate = date => {
     this.setState({
-      selectedDay: event.target.dataset.value
+      startDate: date
+    });
+  };
+
+  handleSetEndDate = date => {
+    this.setState({
+      endDate: date
     });
   };
 
@@ -28,14 +37,36 @@ class Landing extends React.Component {
     return (
       <main>
         <h1>¿ Qué planes hay ?</h1>
-        <Calendar handleSelectedDay={this.handleSelectedDay} selectedDay={this.state.selectedDay} />
+        <DatePicker
+          selected={this.state.startDate}
+          selectsStart
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          onChange={this.handleSetStartDate}
+          locale='es'
+          dateFormat='dd/MM/yyyy'
+          placeholderText='Selecciona la fecha inicial'
+          minDate={new Date()}
+        />
+        <DatePicker
+          selected={this.state.endDate}
+          selectsEnd
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          minDate={this.state.startDate}
+          onChange={this.handleSetEndDate}
+          locale='es'
+          dateFormat='dd/MM/yyyy'
+          placeholderText='Selecciona hasta cuando'
+        />
+
         <Link to='/main'>
           <h2>Ver en el mapa</h2>
         </Link>
         <section>
           <h2>MadEvents</h2>
           <p>
-            Es una aplicación web para consultar los eventos en Madrid y poder filtrarlos por distrito o categotías, asi
+            Es una aplicación web para consultar los eventos en Madrid y poder filtrarlos por distrito o categorías, asi
             encontrarás facilmente nuevos eventos a los que asistir !!!
           </p>
         </section>
