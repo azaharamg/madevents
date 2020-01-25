@@ -1,13 +1,20 @@
 import React from 'react';
 
 function MainPage(props) {
-  const { events } = props.location.state;
+  const { events, startDate, endDate } = props.location.state;
   return (
     <div>
       <ul>
-        {events.map(event => {
-          return <li key={event.id}>{`${event.title} ----Start: ${event.dtstart}----End:${event.dtend}`}</li>;
-        })}
+        {events
+          .filter(event => {
+            const eventDate = new Date(event.dtstart).getTime();
+            return eventDate >= startDate && eventDate <= endDate;
+          })
+          .map(event => {
+            return (
+              <li key={event.id}>{`${event.title} ${event.id} ----Start: ${event.dtstart}----End:${event.dtend}`}</li>
+            );
+          })}
       </ul>
     </div>
   );

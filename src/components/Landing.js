@@ -23,13 +23,13 @@ class Landing extends React.Component {
 
   handleSetStartDate = date => {
     this.setState({
-      startDate: date
+      startDate: new Date(date).setHours(0, 0, 0, 0)
     });
   };
 
   handleSetEndDate = date => {
     this.setState({
-      endDate: date
+      endDate: new Date(date).setHours(23, 59, 59, 999)
     });
   };
 
@@ -60,7 +60,12 @@ class Landing extends React.Component {
           placeholderText='Selecciona hasta cuando'
         />
 
-        <Link to={{ pathname: '/main', state: { events: this.state.events } }}>
+        <Link
+          to={{
+            pathname: '/main',
+            state: { events: this.state.events, startDate: this.state.startDate, endDate: this.state.endDate }
+          }}
+        >
           <h2>Ver en el mapa</h2>
         </Link>
 
