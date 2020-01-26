@@ -67,7 +67,7 @@ class Landing extends React.Component {
     return (
       <Container className='jumbotron text-center'>
         <header className='p-5'>
-          <h1>¿ Qué planes hay ?</h1>
+          <h1 className='header--title'>¿ Qué planes hay ?</h1>
         </header>
         <main>
           <Row>
@@ -115,10 +115,10 @@ class Landing extends React.Component {
             </Col>
           </Row>
           <section className='lead text-muted'>
-            <img src={Logo} alt='logo' />
+            <img className='img-fluid' src={Logo} alt='logo' />
             <p className='text-justify'>
               Es una aplicación web para consultar los eventos en Madrid y poder filtrarlos por distrito o categorías,
-              asi encontrarás facilmente nuevos eventos a los que asistir !!!
+              asi encontrarás fácilmente nuevos eventos a los que asistir !!!
             </p>
           </section>
         </main>
