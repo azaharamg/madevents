@@ -13,12 +13,36 @@ class Landing extends React.Component {
     this.state = {
       events: [],
       startDate: null,
-      endDate: null
+      endDate: null,
+      districts: [],
+      category: []
     };
   }
 
   componentDidMount() {
-    getData().then(data => this.setState({ events: data['@graph'] }));
+    getData().then(data => {
+      const filteredByDistricts = data['@graph']
+        .filter(event => event.address !== undefined)
+        .map(event => {
+          const url = new URL(event.address.district['@id']);
+          const pathUrl = url.pathname;
+          const district = pathUrl.substr(pathUrl.lastIndexOf('/') + 1);
+          return district;
+        });
+      const uniqueDistricts = new Set(filteredByDistricts);
+
+      const filteredByCategories = data['@graph']
+        .filter(event => event.audience !== undefined)
+        .map(event => event.audience);
+      const uniqueCategories = new Set(filteredByCategories);
+
+      // Save events into component state
+      this.setState({
+        events: data['@graph'],
+        districts: [...uniqueDistricts],
+        category: [...uniqueCategories]
+      });
+    });
   }
 
   handleSetStartDate = date => {
