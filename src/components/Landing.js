@@ -108,9 +108,13 @@ class Landing extends React.Component {
                   state: { events: this.state.events, startDate: this.state.startDate, endDate: this.state.endDate }
                 }}
               >
-                <Button variant='primary' size='lg' active>
-                  Mostrar Eventos
-                </Button>
+                {this.state.stardtDate === null || this.state.endDate === null ? (
+                  <Button className='d-none'>Mostrar Eventos</Button>
+                ) : (
+                  <Button variant='primary' size='lg' active>
+                    Mostrar Eventos
+                  </Button>
+                )}
               </Link>
             </Col>
           </Row>
