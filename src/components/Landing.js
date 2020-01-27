@@ -19,34 +19,14 @@ class Landing extends React.Component {
     this.state = {
       events: [],
       startDate: null,
-      endDate: null,
-      districts: [],
-      category: []
+      endDate: null
     };
   }
 
   componentDidMount() {
     getData().then(data => {
-      const filteredByDistricts = data['@graph']
-        .filter(event => event.address !== undefined)
-        .map(event => {
-          const url = new URL(event.address.district['@id']);
-          const pathUrl = url.pathname;
-          const district = pathUrl.substr(pathUrl.lastIndexOf('/') + 1);
-          return district;
-        });
-      const uniqueDistricts = new Set(filteredByDistricts);
-
-      const filteredByCategories = data['@graph']
-        .filter(event => event.audience !== undefined)
-        .map(event => event.audience);
-      const uniqueCategories = new Set(filteredByCategories);
-
-      // Save events into component state
       this.setState({
-        events: data['@graph'],
-        districts: [...uniqueDistricts],
-        category: [...uniqueCategories]
+        events: data['@graph']
       });
     });
   }
@@ -62,6 +42,13 @@ class Landing extends React.Component {
       endDate: new Date(date).setHours(23, 59, 59, 999)
     });
   };
+
+  filterEventsByDates() {
+    return this.state.events.filter(event => {
+      const eventDate = new Date(event.dtstart).getTime();
+      return eventDate >= this.state.startDate && eventDate <= this.state.endDate;
+    });
+  }
 
   render() {
     return (
@@ -105,7 +92,9 @@ class Landing extends React.Component {
               <Link
                 to={{
                   pathname: '/main',
-                  state: { events: this.state.events, startDate: this.state.startDate, endDate: this.state.endDate }
+                  state: {
+                    events: this.filterEventsByDates()
+                  }
                 }}
               >
                 {this.state.stardtDate === null || this.state.endDate === null ? (
