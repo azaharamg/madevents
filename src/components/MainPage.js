@@ -1,9 +1,11 @@
 import React from 'react';
+import ButtonGoBack from './ButtonGoBack';
 
 function MainPage(props) {
   const { events, startDate, endDate } = props.location.state;
   return (
     <div>
+      <ButtonGoBack />
       <ul>
         {events
           .filter(event => {
