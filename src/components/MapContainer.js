@@ -21,14 +21,14 @@ class MapContainer extends React.Component {
 
 		return (
 			<section className='row justify-content-center'>
-				<div className='col-3'>
+				<div className='col-5'>
 					{this.state.markerEvent === '' ? (
 						<h5>No hay eventos seleccionados</h5>
 					) : (
 						<EventsDetail markerEvent={this.state.markerEvent} />
 					)}
 				</div>
-				<section className='col-8'>
+				<section className='col-6'>
 					<Map
 						style={{ height: '50vh', width: '50vw' }}
 						google={props.google}
