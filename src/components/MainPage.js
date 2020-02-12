@@ -67,11 +67,11 @@ class MainPage extends React.Component {
 						<img className='img-fluid fixed-top' src={Logo} alt='logo' />
 					</div>
 				</header>
-				<p className='row justify-content-center'>
+				<div className='row justify-content-center'>
 					<div className='col-6'>
 						<h3>{`Se han encontrado ${filteredEvents.length} eventos`}</h3>
 					</div>
-				</p>
+				</div>
 				<div className='row justify-content-around'>
 					<div className='col-3'>
 						<SelectOptions
