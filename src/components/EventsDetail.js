@@ -1,8 +1,8 @@
 import React from 'react';
 import '../stylesheet/eventDetail.scss';
 
-function EventsDetail(props) {
-	const { title, time, description, link } = props.markerEvent;
+const paintCard = markerEvent => {
+	const { title, time, description, link } = markerEvent;
 	return (
 		<div className='card'>
 			<div className='card-header'>
@@ -34,6 +34,10 @@ function EventsDetail(props) {
 			</div>
 		</div>
 	);
+};
+
+function EventsDetail(props) {
+	return props.markerEvent === null ? <h5>No hay eventos seleccionados</h5> : paintCard(props.markerEvent);
 }
 
 export default EventsDetail;

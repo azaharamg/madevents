@@ -2,6 +2,7 @@ import React from 'react';
 import ButtonGoBack from './ButtonGoBack';
 import SelectOptions from './SelectOptions';
 import MapContainer from './MapContainer';
+import EventsDetail from './EventsDetail';
 import '../stylesheet/mainPage.scss';
 import Logo from '../images/logo.png';
 
@@ -9,12 +10,15 @@ class MainPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			allEvents: props.location.state.events,
 			districts: this.extractDistricts(props.location.state.events),
 			categories: this.extractCategories(props.location.state.events),
 			selectedDistrict: '',
-			selectedCategory: ''
+			selectedCategory: '',
+			markerEvent: null
 		};
 		this.handleSelectedOption = this.handleSelectedOption.bind(this);
+		this.handleShowdetails = this.handleShowdetails.bind(this);
 	}
 
 	extractCategories(events) {
@@ -56,9 +60,15 @@ class MainPage extends React.Component {
 		});
 	}
 
+	handleShowdetails(marker) {
+		const findElement = this.state.allEvents.find(element => element.id === marker.id);
+		this.setState({
+			markerEvent: findElement
+		});
+	}
+
 	render() {
-		const { events } = this.props.location.state;
-		const filteredEvents = this.filterByUserInput(events);
+		const filteredEvents = this.filterByUserInput(this.state.allEvents);
 
 		return (
 			<main className='container mb-5 col-centered'>
@@ -91,9 +101,12 @@ class MainPage extends React.Component {
 						<ButtonGoBack />
 					</div>
 				</div>
-				<div className='row justify-content-around'>
-					<div className='col'>
-						<MapContainer filteredEvents={filteredEvents} />
+				<div className='row'>
+					<div className='col-4'>
+						<EventsDetail markerEvent={this.state.markerEvent} />
+					</div>
+					<div className='col-6'>
+						<MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
 					</div>
 				</div>
 			</main>
