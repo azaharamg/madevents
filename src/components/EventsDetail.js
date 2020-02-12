@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheet/eventDetail.scss';
 
 function EventsDetail(props) {
 	const { title, time, description, link } = props.markerEvent;
@@ -22,7 +23,9 @@ function EventsDetail(props) {
 					</p>
 				) : (
 					<div>
-						<p className='card-text'>Descripción: {description}</p>
+						<p className='card-text'>
+							{description.length > 100 ? description.substring(0, 99) + '...' : description}
+						</p>
 						<a className='btn btn-primary' href={link} target='_blank' rel='noopener noreferrer'>
 							Saber más
 						</a>
