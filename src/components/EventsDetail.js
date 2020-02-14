@@ -24,7 +24,7 @@ const paintCard = markerEvent => {
 				) : (
 					<div>
 						<p className='card-text'>
-							{description.length > 100 ? description.substring(0, 99) + '...' : description}
+							{description.length > 200 ? description.substring(0, 199) + '...' : description}
 						</p>
 						<a className='btn btn-primary' href={link} target='_blank' rel='noopener noreferrer'>
 							Saber más

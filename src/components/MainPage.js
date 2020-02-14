@@ -49,6 +49,10 @@ class MainPage extends React.Component {
 	}
 
 	getDistrictFromEvent(event) {
+		if (event.address === undefined) {
+			debugger;
+			return undefined;
+		}
 		const url = new URL(event.address.district['@id']);
 		const pathUrl = url.pathname;
 		return pathUrl.substr(pathUrl.lastIndexOf('/') + 1);
