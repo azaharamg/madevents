@@ -30,7 +30,7 @@ Además te permitirá ver todos los eventos en un mapa e interactuar pinchando e
 
 ### Prototipo
 
-![picture](./src/images/prototype.png)
+![picture](./images/prototype.png)
 
 [Ver en Marvel](https://marvelapp.com/project/4619306/)
 
