@@ -1,5 +1,5 @@
 const getData = () => {
-  return fetch('https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json', {
+  return fetch('/api/events', {
     method: 'GET',
     headers: {
       Accept: 'application/json'
