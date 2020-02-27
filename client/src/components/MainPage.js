@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ButtonGoBack from './ButtonGoBack';
 import SelectOptions from './SelectOptions';
 import MapContainer from './MapContainer';
 import EventsDetail from './EventsDetail';
 import '../stylesheet/mainPage.scss';
-import Logo from '../images/logo.png';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -74,13 +72,6 @@ class MainPage extends React.Component {
 
     return (
       <main className='container mb-5 col-centered'>
-        <header className='row justify-content-around'>
-          <div className='col-6'>
-            <Link to='/'>
-              <img className='img-fluid fixed-top' src={Logo} alt='logo' />
-            </Link>
-          </div>
-        </header>
         <div className='row justify-content-center'>
           <div className='col-6'>
             <h3>{`Se han encontrado ${filteredEvents.length} eventos`}</h3>
