@@ -57,7 +57,7 @@ class Landing extends React.Component {
 
         <main>
           <Row>
-            <Col className='p-2 d-flex flex-column justify-content-center'>
+            <Col className='p-2'>
               <h4>Fecha inicial</h4>
               <DatePicker
                 selected={this.state.startDate}
@@ -72,7 +72,7 @@ class Landing extends React.Component {
               />
             </Col>
 
-            <Col className='p-2 d-flex flex-column justify-content-center'>
+            <Col className='p-2'>
               <h4>Fecha final</h4>
               <DatePicker
                 selected={this.state.endDate}
@@ -96,13 +96,13 @@ class Landing extends React.Component {
                   }
                 }}
               >
-                {this.state.stardtDate === null || this.state.endDate === null ? (
-                  <Button className='d-none'>Mostrar Eventos</Button>
-                ) : (
-                  <Button variant='primary' size='lg' active>
-                    Mostrar Eventos
-                  </Button>
-                )}
+                <Button
+                  variant='primary'
+                  size='lg'
+                  disabled={this.state.startDate === null || this.state.endDate === null}
+                >
+                  Mostrar Eventos
+                </Button>
               </Link>
             </Col>
           </Row>
