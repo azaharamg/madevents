@@ -108,8 +108,8 @@ class Landing extends React.Component {
           </Row>
           <section className='lead text-muted'>
             <p className='text-justify'>
-              Aplicación web para consultar los eventos en Madrid y poder filtrarlos por distrito o categorías, asi
-              encontrarás fácilmente nuevos eventos a los que asistir !!!
+              ¡Aplicación web para consultar los eventos en Madrid, así encontrarás fácilmente nuevos eventos a los que
+              asistir!
             </p>
           </section>
         </main>

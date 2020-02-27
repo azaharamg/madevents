@@ -4,6 +4,7 @@ import '../stylesheet/app.scss';
 import Landing from './Landing';
 import MainPage from './MainPage';
 import Header from './Header';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path='/' component={Landing} />
         <Route path='/main' component={MainPage} />
       </Switch>
+      <Footer />
     </div>
   );
 }
