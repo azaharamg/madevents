@@ -4,7 +4,7 @@ import getData from '../service/serverData.js';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import es from 'date-fns/locale/es';
 import 'react-datepicker/dist/react-datepicker.css';
-import Logo from '../images/logo.png';
+import '../stylesheet/landing.scss';
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -52,14 +52,22 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <Container className='text-center'>
-        <h1 className='header--title'>¿Qué planes hay?</h1>
-
-        <main>
-          <Row>
-            <Col className='p-2'>
-              <h4>Fecha inicial</h4>
+      <Container className='main text-center'>
+        <Row>
+          <Col>
+            <section className='main--section'>
+              <h1 className='main--section__title'>Elige tus fechas preferidas</h1>
+              <p className='main--section__info text-justify'>
+                ¡Aplicación web para consultar los eventos en Madrid, así encontrarás fácilmente nuevos eventos a los
+                que asistir!
+              </p>
+            </section>
+          </Col>
+          <Col>
+            <div className='rectangle'></div>
+            <section className='date--section d-flex justify-content-around'>
               <DatePicker
+                className='date--section__calendar'
                 selected={this.state.startDate}
                 selectsStart
                 startDate={this.state.startDate}
@@ -70,11 +78,8 @@ class Landing extends React.Component {
                 dateFormat='dd/MM/yyyy'
                 inline
               />
-            </Col>
-
-            <Col className='p-2'>
-              <h4>Fecha final</h4>
               <DatePicker
+                className='date--section__calendar'
                 selected={this.state.endDate}
                 selectsEnd
                 startDate={this.state.startDate}
@@ -85,34 +90,28 @@ class Landing extends React.Component {
                 dateFormat='dd/MM/yyyy'
                 inline
               />
-            </Col>
+            </section>
+          </Col>
+        </Row>
 
-            <Col className='p-4 d-flex justify-content-center' md={{ span: 6, offset: 3 }}>
-              <Link
-                to={{
-                  pathname: '/main',
-                  state: {
-                    events: this.filterEventsByDates()
-                  }
-                }}
-              >
-                <Button
-                  variant='primary'
-                  size='lg'
-                  disabled={this.state.startDate === null || this.state.endDate === null}
-                >
-                  Mostrar Eventos
-                </Button>
-              </Link>
-            </Col>
-          </Row>
-          <section className='lead text-muted'>
-            <p className='text-justify'>
-              ¡Aplicación web para consultar los eventos en Madrid, así encontrarás fácilmente nuevos eventos a los que
-              asistir!
-            </p>
-          </section>
-        </main>
+        <Link
+          className='button--link'
+          to={{
+            pathname: '/main',
+            state: {
+              events: this.filterEventsByDates()
+            }
+          }}
+        >
+          <Button
+            className='button'
+            variant='primary'
+            size='lg'
+            disabled={this.state.startDate === null || this.state.endDate === null}
+          >
+            Mostrar Eventos
+          </Button>
+        </Link>
       </Container>
     );
   }
