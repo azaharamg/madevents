@@ -1,12 +1,13 @@
 import React from 'react';
+import '../stylesheet/header.scss';
 import Logo from '../images/logo.png';
 import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header>
+    <header className='header'>
       <Link to='/'>
-        <img src={Logo} alt='MadEventsLogo' />
+        <img className='header--logo' src={Logo} alt='MadEventsLogo' />
       </Link>
     </header>
   );
