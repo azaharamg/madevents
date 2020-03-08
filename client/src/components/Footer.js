@@ -4,7 +4,7 @@ import '../stylesheet/footer.scss';
 function Footer() {
   return (
     <footer className='footer'>
-      <p className='text-muted'>{`MadEvents ${new Date().getFullYear()}`}</p>
+      <p className='footer--information'>{`MadEvents ${new Date().getFullYear()}`}</p>
     </footer>
   );
 }
