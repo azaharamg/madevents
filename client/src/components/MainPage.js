@@ -1,9 +1,13 @@
 import React from 'react';
-import ButtonGoBack from './ButtonGoBack';
 import SelectOptions from './SelectOptions';
 import MapContainer from './MapContainer';
 import EventsDetail from './EventsDetail';
 import '../stylesheet/mainPage.scss';
+
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -71,40 +75,47 @@ class MainPage extends React.Component {
     const filteredEvents = this.filterByUserInput(this.state.allEvents);
 
     return (
-      <main className='container mb-5 col-centered'>
-        <div className='row justify-content-center'>
-          <div className='col-6'>
-            <h3>{`Se han encontrado ${filteredEvents.length} eventos`}</h3>
-          </div>
-        </div>
-        <div className='row justify-content-around'>
-          <div className='col-3'>
-            <SelectOptions
-              type='selectedDistrict'
-              options={this.state.districts}
-              handleSelected={this.handleSelectedOption}
-            />
-          </div>
-          <div className='col-3'>
-            <SelectOptions
-              type='selectedCategory'
-              options={this.state.categories}
-              handleSelected={this.handleSelectedOption}
-            />
-          </div>
-          <div className='col-3'>
-            <ButtonGoBack />
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-4'>
-            <EventsDetail markerEvent={this.state.markerEvent} />
-          </div>
-          <div className='col-6'>
-            <MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
-          </div>
-        </div>
-      </main>
+      <Container>
+        <Form className='form'>
+          <Form.Label className='form--label'>Seleccione una de las opciones:</Form.Label>
+          <Row>
+            <Col>
+              <SelectOptions
+                type='selectedDistrict'
+                options={this.state.districts}
+                handleSelected={this.handleSelectedOption}
+              />
+            </Col>
+            <Col>
+              <SelectOptions
+                type='selectedCategory'
+                options={this.state.categories}
+                handleSelected={this.handleSelectedOption}
+              />
+            </Col>
+          </Row>
+        </Form>
+        <Container className='event-results'>
+          <Row>
+            <Col></Col>
+            <Col>
+              <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <aside className='aside--card'>
+                <EventsDetail markerEvent={this.state.markerEvent} />
+              </aside>
+            </Col>
+            <Col>
+              <section className='section--map'>
+                <MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
+              </section>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
     );
   }
 }

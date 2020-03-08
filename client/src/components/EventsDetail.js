@@ -49,7 +49,7 @@ const paintCard = markerEvent => {
 };
 
 function EventsDetail(props) {
-  return props.markerEvent === null ? <h5>No hay eventos seleccionados</h5> : paintCard(props.markerEvent);
+  return props.markerEvent === null ? <h4>No hay eventos seleccionados</h4> : paintCard(props.markerEvent);
 }
 
 export default EventsDetail;

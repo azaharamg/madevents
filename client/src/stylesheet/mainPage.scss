@@ -1,4 +1,17 @@
-.col-centered {
-	margin-right: auto;
-	margin-left: auto;
+@import 'variables.scss';
+
+.form {
+  padding-top: $headerHeigth;
+  &--label {
+    font-weight: bold;
+  }
+}
+
+.section--map__info {
+  text-align: center;
+  font-size: 14px;
+}
+
+.event-results {
+  padding-bottom: $footerHeigth;
 }
