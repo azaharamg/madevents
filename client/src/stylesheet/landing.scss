@@ -39,6 +39,9 @@
   background-color: $buttonBackgroundColor;
   border: $buttonBackgroundColor;
   margin: 20px 0 15px 0;
+  &:hover {
+    background-color: $buttonBackgroundHoever;
+  }
   @media (min-width: 768px) {
     margin: 20px 0 15px 0;
   }
@@ -62,4 +65,9 @@
     width: 500px;
     transform: rotate(6deg);
   }
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range {
+  background-color: $rectangleBackgroundColor;
 }
