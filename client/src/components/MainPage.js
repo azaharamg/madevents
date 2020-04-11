@@ -18,21 +18,21 @@ class MainPage extends React.Component {
       categories: this.extractCategories(props.location.state.events),
       selectedDistrict: '',
       selectedCategory: '',
-      markerEvent: null
+      markerEvent: null,
     };
     this.handleSelectedOption = this.handleSelectedOption.bind(this);
     this.handleShowdetails = this.handleShowdetails.bind(this);
   }
 
   extractCategories(events) {
-    const filteredByCategories = events.filter(event => event.audience !== undefined).map(event => event.audience);
+    const filteredByCategories = events.filter((event) => event.audience !== undefined).map((event) => event.audience);
     return Array.from(new Set(filteredByCategories));
   }
 
   extractDistricts(events) {
     const filteredByDistricts = events
-      .filter(event => event.address !== undefined)
-      .map(event => this.getDistrictFromEvent(event));
+      .filter((event) => event.address !== undefined)
+      .map((event) => this.getDistrictFromEvent(event));
 
     // Remove duplicates
     return Array.from(new Set(filteredByDistricts));
@@ -40,10 +40,10 @@ class MainPage extends React.Component {
 
   filterByUserInput(events) {
     return events
-      .filter(event => {
+      .filter((event) => {
         return this.getDistrictFromEvent(event) === this.state.selectedDistrict || this.state.selectedDistrict === '';
       })
-      .filter(event => {
+      .filter((event) => {
         return event.audience === this.state.selectedCategory || this.state.selectedCategory === '';
       });
   }
@@ -60,14 +60,14 @@ class MainPage extends React.Component {
 
   handleSelectedOption(option, selectedValue) {
     this.setState({
-      [option]: selectedValue
+      [option]: selectedValue,
     });
   }
 
   handleShowdetails(marker) {
-    const findElement = this.state.allEvents.find(element => element.id === marker.id);
+    const findElement = this.state.allEvents.find((element) => element.id === marker.id);
     this.setState({
-      markerEvent: findElement
+      markerEvent: findElement,
     });
   }
 

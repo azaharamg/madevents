@@ -6,12 +6,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (min-width: 1024px) {
+  @media (min-width: $breakpoints-lg) {
     justify-content: start;
   }
   &--logo {
     width: 300px;
-    @media (min-width: 768px) {
+    @media (min-width: $breakpoints-md) {
       width: 400px;
     }
   }
