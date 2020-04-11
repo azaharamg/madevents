@@ -1,5 +1,7 @@
+@import 'variables.scss';
+
 .header {
-  background: linear-gradient(217deg, rgba(54, 4, 61, 0.8), rgba(251, 139, 255, 0) 70.71%);
+  background: $backgroundColorGradient;
   height: 80px;
   display: flex;
   justify-content: center;

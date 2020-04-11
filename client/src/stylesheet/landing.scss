@@ -9,7 +9,7 @@
   padding: 20px 0;
   &__title {
     font-family: $fontTitle;
-    font-size: 25px;
+    font-size: $titleFontSize;
     text-align: start;
 
     @media (min-width: 1024px) {
@@ -18,7 +18,7 @@
   }
   &__info {
     font-family: $fontBody;
-    font-size: 15px;
+    font-size: $bodyFontSize;
     padding: 0 5px;
     @media (min-width: 768px) {
       padding: 20px 0;
@@ -36,15 +36,15 @@
 }
 
 .button {
-  background-color: rgb(238, 103, 103);
-  border: rgb(238, 103, 103);
+  background-color: $buttonBackgroundColor;
+  border: $buttonBackgroundColor;
   margin: 20px 0 15px 0;
   @media (min-width: 768px) {
     margin: 20px 0 15px 0;
   }
   &--link {
-    color: rgb(255, 255, 255);
-    font-weight: 700;
+    color: $buttonFontColor;
+    font-weight: $fontBold;
     text-decoration: none;
   }
 }
@@ -55,7 +55,7 @@
   transform: rotate(10deg);
   position: absolute;
   z-index: 0.9;
-  background-color: rgba(238, 103, 103, 0.541);
+  background-color: $rectangleBackgroundColor;
 
   @media (min-width: 768px) {
     height: 300px;

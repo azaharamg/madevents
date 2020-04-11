@@ -3,13 +3,13 @@
 .form {
   padding-top: $headerHeigth;
   &--label {
-    font-weight: bold;
+    font-weight: $fontBold;
   }
 }
 
 .section--map__info {
   text-align: center;
-  font-size: 14px;
+  font-size: $smallFontSize;
 }
 
 .event-results {
