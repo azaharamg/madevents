@@ -19,32 +19,32 @@ class Landing extends React.Component {
     this.state = {
       events: [],
       startDate: null,
-      endDate: null
+      endDate: null,
     };
   }
 
   componentDidMount() {
-    getData().then(data => {
+    getData().then((data) => {
       this.setState({
-        events: data
+        events: data,
       });
     });
   }
 
-  handleSetStartDate = date => {
+  handleSetStartDate = (date) => {
     this.setState({
-      startDate: new Date(date).setHours(0, 0, 0, 0)
+      startDate: new Date(date).setHours(0, 0, 0, 0),
     });
   };
 
-  handleSetEndDate = date => {
+  handleSetEndDate = (date) => {
     this.setState({
-      endDate: new Date(date).setHours(23, 59, 59, 999)
+      endDate: new Date(date).setHours(23, 59, 59, 999),
     });
   };
 
   filterEventsByDates() {
-    return this.state.events.filter(event => {
+    return this.state.events.filter((event) => {
       const eventDate = new Date(event.dtstart).getTime();
       return eventDate >= this.state.startDate && eventDate <= this.state.endDate;
     });
@@ -54,7 +54,7 @@ class Landing extends React.Component {
     return (
       <Container className='main text-center'>
         <Row>
-          <Col>
+          <Col className='columns'>
             <section className='main--section'>
               <h1 className='main--section__title'>Elige tus fechas preferidas</h1>
               <p className='main--section__info text-justify'>
@@ -63,7 +63,7 @@ class Landing extends React.Component {
               </p>
             </section>
           </Col>
-          <Col>
+          <Col className='columns'>
             <div className='rectangle'></div>
             <section className='date--section d-flex justify-content-around'>
               <DatePicker
@@ -93,25 +93,28 @@ class Landing extends React.Component {
             </section>
           </Col>
         </Row>
-
-        <Link
-          className='button--link'
-          to={{
-            pathname: '/main',
-            state: {
-              events: this.filterEventsByDates()
-            }
-          }}
-        >
-          <Button
-            className='button'
-            variant='primary'
-            size='lg'
-            disabled={this.state.startDate === null || this.state.endDate === null}
-          >
-            Mostrar Eventos
-          </Button>
-        </Link>
+        <Row>
+          <Col className='columns'>
+            <Link
+              className='button--link'
+              to={{
+                pathname: '/main',
+                state: {
+                  events: this.filterEventsByDates(),
+                },
+              }}
+            >
+              <Button
+                className='button'
+                variant='primary'
+                size='lg'
+                disabled={this.state.startDate === null || this.state.endDate === null}
+              >
+                Mostrar Eventos
+              </Button>
+            </Link>
+          </Col>
+        </Row>
       </Container>
     );
   }
