@@ -9,9 +9,14 @@
 
 .section--map__info {
   text-align: center;
-  font-size: $smallFontSize;
+  font-size: $bodyFontSize;
+  padding: 10px;
 }
 
 .event-results {
   padding: 0px 0px $footerHeigth 0px;
+}
+
+.aside--card {
+  text-align: center;
 }

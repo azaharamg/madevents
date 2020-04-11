@@ -76,45 +76,47 @@ class MainPage extends React.Component {
 
     return (
       <Container>
-        <Form className='form'>
-          <Form.Label className='form--label'>Seleccione una de las opciones:</Form.Label>
-          <Row>
-            <Col>
-              <SelectOptions
-                type='selectedDistrict'
-                options={this.state.districts}
-                handleSelected={this.handleSelectedOption}
-              />
-            </Col>
-            <Col>
-              <SelectOptions
-                type='selectedCategory'
-                options={this.state.categories}
-                handleSelected={this.handleSelectedOption}
-              />
-            </Col>
-          </Row>
-        </Form>
-        <Container className='event-results'>
-          <Row>
-            <Col></Col>
-            <Col>
-              <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <aside className='aside--card'>
-                <EventsDetail markerEvent={this.state.markerEvent} />
-              </aside>
-            </Col>
-            <Col>
-              <section className='section--map'>
-                <MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
-              </section>
-            </Col>
-          </Row>
-        </Container>
+        <Row>
+          <Col>
+            <Form className='form'>
+              <Form.Label className='form--label'>Seleccione una de las opciones:</Form.Label>
+              <Row>
+                <Col>
+                  <SelectOptions
+                    type='selectedDistrict'
+                    options={this.state.districts}
+                    handleSelected={this.handleSelectedOption}
+                  />
+                </Col>
+                <Col>
+                  <SelectOptions
+                    type='selectedCategory'
+                    options={this.state.categories}
+                    handleSelected={this.handleSelectedOption}
+                  />
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col></Col>
+          <Col md='6'>
+            <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md='6'>
+            <aside className='aside--card'>
+              <EventsDetail markerEvent={this.state.markerEvent} />
+            </aside>
+          </Col>
+          <Col md='6'>
+            <MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
+          </Col>
+        </Row>
       </Container>
     );
   }
