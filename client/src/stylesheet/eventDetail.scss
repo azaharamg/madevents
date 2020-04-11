@@ -1,20 +1,9 @@
 @import 'variables.scss';
 
 .card {
-  height: 50vh;
+  border: light;
 
-  &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  &-share {
-    &__title {
-      font-size: $bodyFontSize;
-    }
-    &__icon {
-      margin-left: 10px;
-    }
+  &__header {
+    background-color: $buttonBackgroundHoever;
   }
 }
