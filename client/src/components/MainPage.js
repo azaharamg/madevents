@@ -1,125 +1,119 @@
-import React from 'react';
-import SelectOptions from './SelectOptions';
-import MapContainer from './MapContainer';
-import EventsDetail from './EventsDetail';
-import '../stylesheet/mainPage.scss';
+import SelectOptions from './SelectOptions'
+import MapContainer from './MapContainer'
+import EventsDetail from './EventsDetail'
+import '../stylesheet/mainPage.scss'
 
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { useState } from 'react'
 
-class MainPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allEvents: props.location.state.events,
-      districts: this.extractDistricts(props.location.state.events),
-      categories: this.extractCategories(props.location.state.events),
-      selectedDistrict: '',
-      selectedCategory: '',
-      markerEvent: null,
-    };
-    this.handleSelectedOption = this.handleSelectedOption.bind(this);
-    this.handleShowdetails = this.handleShowdetails.bind(this);
+export default function MainPage(props) {
+  const extractCategories = (events) => {
+    const filteredByCategories = events.filter((event) => event.audience !== undefined).map((event) => event.audience)
+    return Array.from(new Set(filteredByCategories))
   }
 
-  extractCategories(events) {
-    const filteredByCategories = events.filter((event) => event.audience !== undefined).map((event) => event.audience);
-    return Array.from(new Set(filteredByCategories));
+  const getDistrictFromEvent = (event) => {
+    if (event.address === undefined) {
+      debugger
+      return undefined
+    }
+    const url = new URL(event.address.district['@id'])
+    const pathUrl = url.pathname
+    return pathUrl.substr(pathUrl.lastIndexOf('/') + 1)
   }
 
-  extractDistricts(events) {
+  const extractDistricts = (events) => {
     const filteredByDistricts = events
       .filter((event) => event.address !== undefined)
-      .map((event) => this.getDistrictFromEvent(event));
+      .map((event) => getDistrictFromEvent(event))
 
     // Remove duplicates
-    return Array.from(new Set(filteredByDistricts));
+    return Array.from(new Set(filteredByDistricts))
   }
 
-  filterByUserInput(events) {
+  const [state, setState] = useState({
+    allEvents: props.location.state.events,
+    districts: extractDistricts(props.location.state.events),
+    categories: extractCategories(props.location.state.events),
+    selectedDistrict: '',
+    selectedCategory: '',
+    markerEvent: null
+  })
+
+  const filterByUserInput = (events) => {
+    console.log(state)
     return events
       .filter((event) => {
-        return this.getDistrictFromEvent(event) === this.state.selectedDistrict || this.state.selectedDistrict === '';
+        return getDistrictFromEvent(event) === state.selectedDistrict || state.selectedDistrict === ''
       })
       .filter((event) => {
-        return event.audience === this.state.selectedCategory || this.state.selectedCategory === '';
-      });
+        return event.audience === state.selectedCategory || state.selectedCategory === ''
+      })
   }
 
-  getDistrictFromEvent(event) {
-    if (event.address === undefined) {
-      debugger;
-      return undefined;
-    }
-    const url = new URL(event.address.district['@id']);
-    const pathUrl = url.pathname;
-    return pathUrl.substr(pathUrl.lastIndexOf('/') + 1);
+  const filteredEvents = filterByUserInput(state.allEvents)
+
+  const handleSelectedOption = (option, selectedValue) => {
+    setState({
+      ...state,
+      [option]: selectedValue
+    })
   }
 
-  handleSelectedOption(option, selectedValue) {
-    this.setState({
-      [option]: selectedValue,
-    });
+  const handleShowdetails = (marker) => {
+    const findElement = state.allEvents.find((element) => element.id === marker.id)
+    setState({
+      ...state,
+      markerEvent: findElement
+    })
   }
 
-  handleShowdetails(marker) {
-    const findElement = this.state.allEvents.find((element) => element.id === marker.id);
-    this.setState({
-      markerEvent: findElement,
-    });
-  }
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <Form className='form'>
+            <Form.Label className='form--label'>Seleccione una de las opciones:</Form.Label>
+            <Row>
+              <Col>
+                <SelectOptions
+                  type='selectedDistrict'
+                  options={state.districts}
+                  handleSelected={handleSelectedOption}
+                />
+              </Col>
+              <Col>
+                <SelectOptions
+                  type='selectedCategory'
+                  options={state.categories}
+                  handleSelected={handleSelectedOption}
+                />
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
 
-  render() {
-    const filteredEvents = this.filterByUserInput(this.state.allEvents);
+      <Row>
+        <Col></Col>
+        <Col md='6'>
+          <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
+        </Col>
+      </Row>
 
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <Form className='form'>
-              <Form.Label className='form--label'>Seleccione una de las opciones:</Form.Label>
-              <Row>
-                <Col>
-                  <SelectOptions
-                    type='selectedDistrict'
-                    options={this.state.districts}
-                    handleSelected={this.handleSelectedOption}
-                  />
-                </Col>
-                <Col>
-                  <SelectOptions
-                    type='selectedCategory'
-                    options={this.state.categories}
-                    handleSelected={this.handleSelectedOption}
-                  />
-                </Col>
-              </Row>
-            </Form>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col></Col>
-          <Col md='6'>
-            <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md='6'>
-            <aside className='aside--card'>
-              <EventsDetail markerEvent={this.state.markerEvent} />
-            </aside>
-          </Col>
-          <Col md='6'>
-            <MapContainer filteredEvents={filteredEvents} handleShowdetails={this.handleShowdetails} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+      <Row>
+        <Col md='6'>
+          <aside className='aside--card'>
+            <EventsDetail markerEvent={state.markerEvent} />
+          </aside>
+        </Col>
+        <Col md='6'>
+          <MapContainer filteredEvents={filteredEvents} handleShowdetails={handleShowdetails} />
+        </Col>
+      </Row>
+    </Container>
+  )
 }
-
-export default MainPage;

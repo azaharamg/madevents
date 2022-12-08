@@ -1,14 +1,14 @@
-import React from 'react';
-import '../stylesheet/eventDetail.scss';
+import '../stylesheet/eventDetail.scss'
 
-import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-const paintCard = (markerEvent) => {
-  const { title, time, description, link } = markerEvent;
-  const message = `¿Te vienes a este evento? Es sobre ${description} `;
+function paintCard(markerEvent) {
+  const { title, time, description, link } = markerEvent
+  const message = `¿Te vienes a este evento? Es sobre ${description} `
+
   return (
     <Card className='card'>
       <Card.Header className='card__header'>
@@ -45,11 +45,9 @@ const paintCard = (markerEvent) => {
         )}
       </Card.Body>
     </Card>
-  );
-};
-
-function EventsDetail(props) {
-  return props.markerEvent === null ? <h4>No hay eventos seleccionados</h4> : paintCard(props.markerEvent);
+  )
 }
 
-export default EventsDetail;
+export default function EventsDetail(props) {
+  return props.markerEvent === null ? <h4>No hay eventos seleccionados</h4> : paintCard(props.markerEvent)
+}

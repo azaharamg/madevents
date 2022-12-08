@@ -1,10 +1,9 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import '../stylesheet/app.scss';
-import Landing from './Landing';
-import MainPage from './MainPage';
-import Header from './Header';
-import Footer from './Footer';
+import { Route, Switch } from 'react-router-dom'
+import '../stylesheet/app.scss'
+import Landing from './Landing'
+import MainPage from './MainPage'
+import Header from './Header'
+import Footer from './Footer'
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
       </Switch>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
