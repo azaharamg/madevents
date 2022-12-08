@@ -8,8 +8,11 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
-export default function MainPage(props) {
+export default function MainPage() {
+  const location = useLocation()
+
   const extractCategories = (events) => {
     const filteredByCategories = events.filter((event) => event.audience !== undefined).map((event) => event.audience)
     return Array.from(new Set(filteredByCategories))
@@ -35,16 +38,15 @@ export default function MainPage(props) {
   }
 
   const [state, setState] = useState({
-    allEvents: props.location.state.events,
-    districts: extractDistricts(props.location.state.events),
-    categories: extractCategories(props.location.state.events),
+    allEvents: location.state.events,
+    districts: extractDistricts(location.state.events),
+    categories: extractCategories(location.state.events),
     selectedDistrict: '',
     selectedCategory: '',
     markerEvent: null
   })
 
   const filterByUserInput = (events) => {
-    console.log(state)
     return events
       .filter((event) => {
         return getDistrictFromEvent(event) === state.selectedDistrict || state.selectedDistrict === ''

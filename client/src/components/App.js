@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import '../stylesheet/app.scss'
 import Landing from './Landing'
 import MainPage from './MainPage'
@@ -9,10 +9,10 @@ function App() {
   return (
     <div className='app--container'>
       <Header />
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route path='/main' component={MainPage} />
-      </Switch>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/main' element={<MainPage />} />
+      </Routes>
       <Footer />
     </div>
   )

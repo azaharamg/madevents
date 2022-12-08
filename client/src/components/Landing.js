@@ -82,15 +82,7 @@ export default function Landing() {
       </Row>
       <Row>
         <Col className='columns'>
-          <Link
-            className='button--link'
-            to={{
-              pathname: '/main',
-              state: {
-                events: filterEventsByDates()
-              }
-            }}
-          >
+          <Link className='button--link' to='/main' state={{ events: filterEventsByDates() }}>
             <Button className='button' variant='primary' size='lg' disabled={startDate === null || endDate === null}>
               Mostrar Eventos
             </Button>
