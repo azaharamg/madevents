@@ -2271,6 +2271,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-leaflet/core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@react-leaflet/core@npm:2.1.0"
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: c11a15fb71a9929b809f346d8f784d0f32afa373bc096aa1f0d0fa6a2ef0ce632a563c31876abf8b255a12a19d6e80ece31e2ef505f79a678bbf073e7a6c5c60
+  languageName: node
+  linkType: hard
+
 "@remix-run/router@npm:1.0.5":
   version: 1.0.5
   resolution: "@remix-run/router@npm:1.0.5"
@@ -6680,16 +6691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"google-maps-react@npm:^2.0.2":
-  version: 2.0.6
-  resolution: "google-maps-react@npm:2.0.6"
-  peerDependencies:
-    react: ~0.14.8 || ^15.0.0 || ^16.0.0
-    react-dom: ~0.14.8 || ^15.0.0 || ^16.0.0
-  checksum: cf5120d6ff7234bb58953d3a475b30bbd20f67cb3167865c2c64ce4eba772463e0b6e621fd51e93d383f451e86677374c0ed4b0645dc18bcd14666eac52e5e7b
-  languageName: node
-  linkType: hard
-
 "graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
@@ -8350,6 +8351,13 @@ __metadata:
   dependencies:
     language-subtag-registry: ~0.3.2
   checksum: c81b5d8b9f5f9cfd06ee71ada6ddfe1cf83044dd5eeefcd1e420ad491944da8957688db4a0a9bc562df4afdc2783425cbbdfd152c01d93179cf86888903123cf
+  languageName: node
+  linkType: hard
+
+"leaflet@npm:^1.9.3":
+  version: 1.9.3
+  resolution: "leaflet@npm:1.9.3"
+  checksum: f8bc33215e6aed8488cb3d32511b943ff093c1747bcda8a39116e24fe714e12525f1a6843b6a79940ece4cf8d2a86e2cb1d7b80fc550344b3182659b19231a04
   languageName: node
   linkType: hard
 
@@ -10663,12 +10671,13 @@ __metadata:
     "@testing-library/react": ^9.4.0
     "@testing-library/user-event": ^7.2.1
     bootstrap: ^4.4.1
-    google-maps-react: ^2.0.2
+    leaflet: ^1.9.3
     moment: ^2.24.0
     react: ^18.2.0
     react-bootstrap: ^1.0.0-beta.16
     react-datepicker: ^2.11.0
     react-dom: ^18.2.0
+    react-leaflet: ^4.2.0
     react-router-dom: ^6.4.5
     react-scripts: 5.0.1
     sass: ^1.55.0
@@ -10693,6 +10702,19 @@ __metadata:
   version: 18.2.0
   resolution: "react-is@npm:18.2.0"
   checksum: e72d0ba81b5922759e4aff17e0252bd29988f9642ed817f56b25a3e217e13eea8a7f2322af99a06edb779da12d5d636e9fda473d620df9a3da0df2a74141d53e
+  languageName: node
+  linkType: hard
+
+"react-leaflet@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-leaflet@npm:4.2.0"
+  dependencies:
+    "@react-leaflet/core": ^2.1.0
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: da6351ac89c110039d1e9e72888e7c8c04982a87c0e48c1a2eafc689b52e88e95cc74f7e621eddab7d2de1f4979ad34c3bc74483d60ef44b0ef89f67ee237d1a
   languageName: node
   linkType: hard
 

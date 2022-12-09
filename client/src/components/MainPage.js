@@ -1,6 +1,5 @@
 import SelectOptions from './SelectOptions'
-import MapContainer from './MapContainer'
-import EventsDetail from './EventsDetail'
+import Map from './Map'
 import '../stylesheet/mainPage.scss'
 
 import Form from 'react-bootstrap/Form'
@@ -20,7 +19,6 @@ export default function MainPage() {
 
   const getDistrictFromEvent = (event) => {
     if (event.address === undefined) {
-      debugger
       return undefined
     }
     const url = new URL(event.address.district['@id'])
@@ -65,14 +63,6 @@ export default function MainPage() {
     })
   }
 
-  const handleShowdetails = (marker) => {
-    const findElement = state.allEvents.find((element) => element.id === marker.id)
-    setState({
-      ...state,
-      markerEvent: findElement
-    })
-  }
-
   return (
     <Container>
       <Row>
@@ -100,21 +90,11 @@ export default function MainPage() {
       </Row>
 
       <Row>
-        <Col></Col>
-        <Col md='6'>
-          <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
-        </Col>
+        <p className='section--map__info'>{`Se han encontrado ${filteredEvents.length} eventos`}</p>
       </Row>
 
       <Row>
-        <Col md='6'>
-          <aside className='aside--card'>
-            <EventsDetail markerEvent={state.markerEvent} />
-          </aside>
-        </Col>
-        <Col md='6'>
-          <MapContainer filteredEvents={filteredEvents} handleShowdetails={handleShowdetails} />
-        </Col>
+        <Map filteredEvents={filteredEvents} />
       </Row>
     </Container>
   )

@@ -13,7 +13,6 @@ Users can share the events in social media, too.
 ## 🔸 Technical tools
 
 - ReactJS responsive application
-- Requests to [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial?hl=es)
 - Requests to Madrid Council [`Actividades Culturales y de Ocio Municipal en los próximos 100 días`](https://datos.madrid.es/nuevoMadrid/swagger-ui-master-2.2.10/dist/index.html?url=/egobfiles/api.datos.madrid.es.json#!/Actividades32Culturales32y32de32Ocio32Municipal32en32los32pr243ximos3210032d237as/agenda_eventos_culturales_100_json)
 - Layout with Boostrap 4 and Sass
 - Express to avoid CORS
