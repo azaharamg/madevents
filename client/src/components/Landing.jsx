@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 registerLocale('es', es)
 
@@ -18,9 +18,11 @@ export default function Landing() {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
 
-  getData().then((data) => {
-    setEvents(data)
-  })
+  useEffect(() => {
+    getData().then((data) => {
+      setEvents(data)
+    })
+  }, [startDate, endDate])
 
   const handleSetStartDate = (date) => {
     setStartDate(new Date(date).setHours(0, 0, 0, 0))

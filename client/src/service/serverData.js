@@ -4,7 +4,7 @@ const getData = () => {
     headers: {
       Accept: 'application/json'
     }
-  }).then(response => response.json());
-};
+  }).then((response) => response.json())
+}
 
-export default getData;
+export default getData

@@ -20,14 +20,11 @@
     "react-datepicker": "^2.11.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.0",
-    "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1"
+    "react-router-dom": "^6.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +42,8 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.55.0"
+    "@vitejs/plugin-react": "^3.0.0",
+    "sass": "^1.55.0",
+    "vite": "^4.0.0"
   }
 }
